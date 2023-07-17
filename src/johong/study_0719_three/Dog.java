@@ -1,4 +1,4 @@
-package johong;
+package johong.study_0719_three;
 
 public class Dog extends Animal {
 	
@@ -16,8 +16,6 @@ public class Dog extends Animal {
 	}
 
 
-
-	
 	//다형성 - 오버라이딩
 	@Override
 	public void Count(Boolean yn) {

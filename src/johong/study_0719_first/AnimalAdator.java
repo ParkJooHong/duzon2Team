@@ -1,4 +1,4 @@
-package johong;
+package johong.study_0719_first;
 
 public abstract class AnimalAdator implements AnimalInterface {
 
@@ -13,4 +13,12 @@ public abstract class AnimalAdator implements AnimalInterface {
 		// TODO Auto-generated method stub
 	
 	}
+
+	@Override
+	public void eat() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 }

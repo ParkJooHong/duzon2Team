@@ -1,4 +1,4 @@
-package johong;
+package johong.study_0719_three;
 
 public class Animal {
 	int age;

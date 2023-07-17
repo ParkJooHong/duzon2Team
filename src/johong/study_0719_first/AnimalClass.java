@@ -1,4 +1,4 @@
-package johong;
+package johong.study_0719_first;
 
 public class AnimalClass extends AnimalAdator {
 	

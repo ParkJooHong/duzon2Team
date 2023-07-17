@@ -1,4 +1,4 @@
-package johong;
+package johong.study_0719_first;
 
 public interface AnimalInterface {
 
@@ -7,5 +7,6 @@ public interface AnimalInterface {
 	
 	void walk();
 	
+	void eat();
 	
 }
