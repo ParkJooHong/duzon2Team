@@ -9,12 +9,6 @@ public class AnonymousInner {
 
 	//how1 . 필드에 익명자식객체 생성
 	Animal dog = new Animal() {
-		String name = "시바견";
-		
-		void bark() {
-			System.out.println("귀엽게 짖는다.");
-		}
-
 		@Override
 		public void cute() {
 			System.out.println("강아지 중에 제일 귀엽다.");
@@ -24,11 +18,6 @@ public class AnonymousInner {
 	//how2 . 지역변수 초기값으로 삽입
 	public void dog1() {
 		Animal dog1 = new Animal() {
-			String name = "불독";
-			
-			void angry() {
-				System.out.println("화나면 무섭다.");
-			}
 			@Override
 			public void cute() {
 				System.out.println("하나도 안귀엽다");
@@ -41,4 +30,7 @@ public class AnonymousInner {
 	public void dog2(Animal dog) {
 		dog.cute();
 	}
+	
+	
+	
 }

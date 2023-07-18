@@ -45,11 +45,30 @@ public class Z_MainMethod {
 			void eatting() {
 				System.out.println("밥을 먹는다.");
 			}
-
 			@Override
 			public void cute() {
 				System.out.println("짱 기엽다.");
 			}
+		});
+		
+		System.out.println("----------------------------익명 내부 클래스2---------------------------------");
+		//---------------------------------------
+		
+		
+		AnoymousInner2 animal = new AnoymousInner2();
+		//익명 자식 객체가 대입된 필드 사용
+		animal.ani1();
+		
+		// 익명 자식 객체가 대입된 로컬 변수 사용
+		animal.ani2();
+		
+		//익명 자식 객체가 대입된 매개변수 사용
+		animal.ani3(new Animal() {
+			@Override
+			public void cute() {
+				System.out.println("익명자식 동물3도 귀엽다.");
+			}
+			
 		});
 	}
 }
