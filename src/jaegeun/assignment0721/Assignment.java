@@ -9,8 +9,9 @@ import java.util.Scanner;
  * 1. 목록
  * 2. 상세 페이지
  * 3. 등록하기
- * 4. 삭제하기
- * 5. 검색하기
+ * 4. 수정하기
+ * 5. 삭제하기
+ * 6. 검색하기
  */
 public class Assignment {
 
