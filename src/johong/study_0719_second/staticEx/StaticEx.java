@@ -1,4 +1,4 @@
-package johong.study_0719_second;
+package johong.study_0719_second.staticEx;
 
 
 class Number{
