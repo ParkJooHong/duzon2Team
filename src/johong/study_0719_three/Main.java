@@ -3,7 +3,6 @@ package johong.study_0719_three;
 public class Main {
 
 	public static void main(String[] args) {
-
 		//다형성 오버로딩
 		Dog a = new Dog();
 		
@@ -25,7 +24,7 @@ public class Main {
 		
 		System.out.println();
 		
-		//다형성 - 형변환
+		//다형성 - 타입변환
 		Animal c = new Dog();
 		c.age = 92;
 		c.Change();
@@ -36,5 +35,4 @@ public class Main {
 		System.out.println("동물 인가요? " + (b1 instanceof Animal)); 
 		System.out.println("강아지 인가요? " + (a1 instanceof Animal)); 
 	}
-
 }
