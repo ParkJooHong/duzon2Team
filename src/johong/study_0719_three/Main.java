@@ -35,9 +35,6 @@ public class Main {
 		
 		System.out.println("동물 인가요? " + (b1 instanceof Animal)); 
 		System.out.println("강아지 인가요? " + (a1 instanceof Animal)); 
-		
-		
-		
 	}
 
 }
