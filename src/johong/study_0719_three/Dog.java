@@ -15,7 +15,6 @@ public class Dog extends Animal {
 		System.out.println("강아지" + count + "마리 , " + "종류는 " + type );
 	}
 
-
 	//다형성 - 오버라이딩
 	@Override
 	public void Count(Boolean yn) {
@@ -27,7 +26,4 @@ public class Dog extends Animal {
 	public void Change() {
 		System.out.println("강아지이고, 나이는" + this.age +"살 입니다." );
 	}
-	
-	
-	
 }

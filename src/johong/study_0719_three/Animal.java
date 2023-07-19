@@ -16,7 +16,6 @@ public class Animal {
 		System.out.println("동물" + count + "마리 , " + "종류는 " + type );
 	}
 	
-	
 	//다형성 - 오버라이딩
 	public void Count(Boolean yn) {
 		System.out.println("동물입니다.");
