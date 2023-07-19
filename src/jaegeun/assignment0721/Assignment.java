@@ -1,11 +1,9 @@
 package day10.assignment;
 
-import day07.example;
-
 import java.util.Scanner;
 
 /**
- * 객체배열 (Array)과 Scanner를 이용해 입출력
+ * 객체배열 (Array)과 Scanner 이용해 입출력
  * 1. 목록
  * 2. 상세 페이지
  * 3. 등록하기
@@ -18,6 +16,7 @@ public class Assignment {
     private Board[] boards;
     static int index;
     static int id;
+
     public Assignment() {
         boards = new Board[5];
         // 초기 게시글 입력
@@ -27,57 +26,63 @@ public class Assignment {
         boards[index++] = new Board(id++, "하이용", "안녕하세요", "송재근");
     }
 
+    public static void main(String[] args) {
+        Assignment a = new Assignment();
+        Scanner scanner = new Scanner(System.in);
+        startProgram(a, scanner);
+    }
+
     private static void startProgram(Assignment a, Scanner scanner) {
         while (true) {
-            System.out.printf("메뉴를 선택해주세요 : 1) 게시글 추가 2) 게시글 삭제 3) 게시글 수정 4) 게시글 목록 5) 게시글 검색 6) 상세 게시글\n>> ");
-            switch (Integer.parseInt(scanner.nextLine())) {
-                case 1:
-                    try {
-                        System.out.printf("ex) 제목,내용,작성자 \n 양식에 맞게 입력해주세요 >> ");
+            System.out.print("메뉴를 선택해주세요 : 1) 게시글 추가 2) 게시글 삭제 3) 게시글 수정 4) 게시글 목록 5) 게시글 검색 6) 상세 게시글\n>> ");
+            try {
+                switch (Integer.parseInt(scanner.nextLine())) {
+                    case 1:
+                        System.out.print("ex) 제목,내용,작성자 \n 양식에 맞게 입력해주세요 >> ");
                         String data = scanner.nextLine();
                         String[] dataSplit = a.dataSplit(data);
                         a.boardAdd(new Board(id++, dataSplit[0], dataSplit[1], dataSplit[2]));
-                    } catch (ArrayIndexOutOfBoundsException e) {
-                        System.out.println("잘못 입력하셨습니다.");
                         break;
-                    }
-                    System.out.println("게시글 추가");
-                    break;
-                case 2:
-                    System.out.printf("삭제할 게시글의 boardId를 입력해주세요.\n>> ");
-                    int deleteId = Integer.parseInt(scanner.nextLine());
-                    a.boardDelete(deleteId);
-                    break;
-                case 3:
-                    System.out.printf("수정할 게시글의 boardId를 입력해주세요.\n>> ");
-                    int updateId = Integer.parseInt(scanner.nextLine());
-                    System.out.printf("ex) 제목,내용,작성자 \n 양식에 맞게 수정할 내용을 입력해주세요 >> ");
-                    String data = scanner.nextLine();
-                    String[] dataSplit = a.dataSplit(data);
-                    a.boardUpdate(updateId, new Board(updateId, dataSplit[0], dataSplit[1], dataSplit[2]));
-                    break;
-                case 4:
-                    a.boardList();
-                    break;
-                case 5:
-                    System.out.printf("조회할 방법을 입력해주세요. 1) 작성자 2) 제목\n>> ");
-                    int choice = Integer.parseInt(scanner.nextLine());
-                    System.out.printf("검색할 내용 : ");
-                    String searchData = scanner.nextLine();
-                    if (choice == 1) {
-                        a.boardSearchByWriter(searchData);
-                    } else {
-                        a.boardSearchByTitle(searchData);
-                    }
-                    break;
-                case 6:
-                    System.out.printf("상세 조회할 게시판의 아이디를 입력해주세요.\n>> ");
-                    int selectIndex = Integer.parseInt(scanner.nextLine());
-                    a.board(selectIndex);
-                    break;
-                default:
-                    System.out.println("잘못 입력하셨습니다.");
-                    System.exit(0);
+                    case 2:
+                        System.out.print("삭제할 게시글의 boardId를 입력해주세요.\n>> ");
+                        int deleteId = Integer.parseInt(scanner.nextLine());
+                        a.boardDelete(deleteId);
+                        break;
+                    case 3:
+                        System.out.print("수정할 게시글의 boardId를 입력해주세요.\n>> ");
+                        int updateId = Integer.parseInt(scanner.nextLine());
+                        System.out.print("ex) 제목,내용,작성자 \n 양식에 맞게 수정할 내용을 입력해주세요 >> ");
+                        String data2 = scanner.nextLine();
+                        String[] dataSplit2 = a.dataSplit(data2);
+                        a.boardUpdate(updateId, new Board(updateId, dataSplit2[0], dataSplit2[1], dataSplit2[2]));
+                        break;
+                    case 4:
+                        a.boardList();
+                        break;
+                    case 5:
+                        System.out.print("조회할 방법을 입력해주세요. 1) 작성자 2) 제목\n>> ");
+                        int choice = Integer.parseInt(scanner.nextLine());
+                        System.out.print("검색할 내용 : ");
+                        String searchData = scanner.nextLine();
+                        if (choice == 1) {
+                            a.boardSearchByWriter(searchData);
+                        } else {
+                            a.boardSearchByTitle(searchData);
+                        }
+                        break;
+                    case 6:
+                        System.out.print("상세 조회할 게시판의 아이디를 입력해주세요.\n>> ");
+                        int selectIndex = Integer.parseInt(scanner.nextLine());
+                        a.board(selectIndex);
+                        break;
+                    default:
+                        System.out.println("잘못 입력하셨습니다.");
+                        System.exit(0);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("숫자를 잘못 입력하셨습니다.");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("잘못 입력하셨습니다.");
             }
         }
     }
@@ -97,9 +102,7 @@ public class Assignment {
      */
     private String[] dataSplit(String data) {
         String[] splitData = new String[3];
-        for (int i = 0; i < splitData.length; i++) {
-            splitData[i] = data.split(",")[i];
-        }
+        System.arraycopy(data.split(","), 0, splitData, 0, splitData.length);
         return splitData;
     }
 
@@ -123,7 +126,7 @@ public class Assignment {
      * 게시글 수정
      */
 
-    public void boardUpdate(int boardId, Board board){
+    public void boardUpdate(int boardId, Board board) {
         boards[boardId] = board;
     }
 
@@ -131,7 +134,7 @@ public class Assignment {
      * 게시글 목록
      */
     public void boardList() {
-        System.out.println("------------------<BOARD>------------------");
+        System.out.println("----------------------<BOARD>----------------------");
         for (Board board : boards) {
             if (board != null)
                 System.out.println(board);
@@ -149,8 +152,7 @@ public class Assignment {
                     searchIndex[i] = 1;
                 }
             }
-        }catch (NullPointerException e){
-
+        } catch (NullPointerException ignored) {
         }
         searchBoardPrint(searchIndex);
     }
@@ -166,8 +168,7 @@ public class Assignment {
                     searchIndex[i] = 1;
                 }
             }
-        }catch (NullPointerException e){
-
+        } catch (NullPointerException ignored) {
         }
         searchBoardPrint(searchIndex);
     }
@@ -180,10 +181,10 @@ public class Assignment {
         for (int i = 0; i < boards.length; i++) {
             if (searchIndex[i] != 0) {
                 System.out.println(boards[i].toString());
-                notFound=false;
+                notFound = false;
             }
         }
-        if(notFound) System.out.println("존재하지 않는 게시글입니다.");
+        if (notFound) System.out.println("존재하지 않는 게시글입니다.");
     }
 
     /**
@@ -192,12 +193,6 @@ public class Assignment {
     public void board(int selectId) {
         System.out.println("<Board Detail>");
         System.out.println(boards[selectId].board());
-    }
-
-    public static void main(String[] args) {
-        Assignment a = new Assignment();
-        Scanner scanner = new Scanner(System.in);
-        startProgram(a, scanner);
     }
 
 }

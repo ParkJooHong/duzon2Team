@@ -23,18 +23,18 @@ public class Board {
 
     @Override
     public String toString() {
-        return  "[boardId=" + boardId +
+        return "[boardId=" + boardId +
                 ", title='" + title + '\'' +
                 ", writer='" + writer + '\'' +
                 "]";
     }
 
-    public String board(){
+    public String board() {
         return
                 "[boardId=" + boardId +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", writer='" + writer + '\'' +
-                "]";
+                        ", title='" + title + '\'' +
+                        ", content='" + content + '\'' +
+                        ", writer='" + writer + '\'' +
+                        "]";
     }
 }
