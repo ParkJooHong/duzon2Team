@@ -67,8 +67,6 @@ SELECT ENAME, COMM FROM EMP WHERE COMM IS NULL;
 
 
 
-
-
 < dbQuiz1 >
 
 
@@ -98,10 +96,10 @@ SELECT * FROM USERTBL WHERE NAME LIKE "김%";
 -- 8. usertbl에서 이름이 "종신"인 사람들의 모든 정보를 출력하라
 SELECT * FROM USERTBL WHERE NAME LIKE "%종신";
 
--- 9. usertbl에서 사람들의 모든 정보를 name을 기준으로 오름차순 출력하라
+-- 9. usertbl에서 사람들의 모든 정보를 name을 기준으로 오름차순 출력하라.
 SELECT * FROM USERTBL ORDER BY NAME;
 
--- 10. usertbl에서 사람들의 모든 정보를 name을 기준으로 내림차순 출력하라
+-- 10. usertbl에서 사람들의 모든 정보를 name을 기준으로 내림차순 출력하라.
 SELECT * FROM USERTBL ORDER BY NAME DESC;
 
 -- 12. usertbl에서 사람들의 모든 정보를 addr을 기준으로 오름차순 출력하라.
@@ -238,7 +236,6 @@ SELECT SLEEP(5), "열심히 하자";
 -- 문제81
 -- 오늘 날짜를 출력하고 몇 사분기인지를 출력하시오.
 SELECT CAST(NOW() AS DATE) AS "오늘 날짜", QUARTER(NOW());
-
 
 
 < dbQuiz4 >
