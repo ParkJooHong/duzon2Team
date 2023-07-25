@@ -1,0 +1,265 @@
+< dbQuiz0 >
+
+use bitdb;
+SELECT * FROM EMP;
+
+-- 1. 부서 테이블의 모든 데이터를 출력
+SELECT * FROM EMP;
+
+-- 2. EMP 테이블에서 각 사원의 직업, 사원번호, 이름, 입사일을 출력하라.
+SELECT JOB, EMPNO, ENAME, HIREDATE FROM EMP;
+
+-- 3.EMP 테이블에서 직업을 출력하되, 각 항목이 중복되지 않게 출력하라.
+SELECT DISTINCT JOB FROM EMP;
+
+-- 4. 급여가 2850이상인 사원의 이름 및 급여를 출력하라.
+SELECT ENAME, SAL FROM EMP WHERE SAL >= 2850;
+
+-- 5. 사원번호가 7566인 사원의 이름 및 부서번호를 출력하라.
+SELECT ENAME, DEPTNO FROM EMP WHERE EMPNO = 7566;
+
+-- 6. 급여가 1500이상 2850이하 범위에 속하지 않는 모든 사원의 이름 및 급여를 출력하라.
+SELECT ENAME, SAL FROM EMP WHERE SAL < 1500 OR SAL > 2850;
+
+-- 7. 1981년 2월20일 ~ 1981년 5월1일에 입사한 사원의 이름,직업 및 입사일을
+-- 출력하라. 입사일 기준으로 오름차순으로 정렬하다.
+SELECT ENAME, JOB, HIREDATE FROM EMP WHERE DATE(HIREDATE) BETWEEN '1981-02-20' AND '1981-05-01' ORDER BY HIREDATE;
+
+-- 8. 10번 및 30번 부서에 속하는 모든 사원의 이름과 부서 번호를 출력하되, 이름을 ALTER
+-- 알파벳순으로 정렬하여 출력하라.
+SELECT ENAME AS "이름", DEPTNO AS "부서번호" FROM EMP WHERE DEPTNO = 10 OR DEPTNO = 30 ORDER BY ENAME;
+
+-- 9. 10번 및 30번 부서에 속하는 모든 사원 중 급여가 1500을 넘는 사원의 이름
+-- 및 급여를 출력할라. 단 컬럼명을 각각 EMPLOYEE 및 MONTHLY SALARY로 지정하라.
+SELECT ENAME AS "EMPLOYEE", SAL AS "MONTHLY SALARY" FROM EMP WHERE DEPTNO = 10 OR DEPTNO = 30 AND SAL > 1500;
+
+-- 10. 관리자가 없는 모든 사원의 이름 및 직위를 출력하라.
+SELECT ENAME, JOB FROM EMP WHERE MGR IS NULL;
+
+-- 11. 커미션을 받는 모든 사원의 이름, 급여 및 커미션을 출력하되, 급여를 기준으로
+-- 내림차순으로 정렬하여 출력하라.
+SELECT ENAME, SAL, COMM FROM EMP WHERE COMM IS NOT NULL ORDER BY SAL DESC;
+
+-- 12. 이름의 세 번째 문자가 A인 모든 사원의 이름을 출력하라.
+SELECT ENAME FROM EMP WHERE ENAME LIKE '__A%';
+
+-- 13. 이름에 L이 두 번 들어가며 부서 30에 속해있는 사원의 이름을 출력하라.
+SELECT ENAME FROM EMP WHERE ENAME LIKE '%L%L%' AND DEPTNO = 30;
+
+-- 14. 직업이 Clerk 또는 Analyst이면서 급여가 1000, 3000, 5000 이 아닌
+-- 모든 사원의 이름, 직업 및 급여를 출력하라.
+SELECT ENAME, JOB, SAL FROM EMP WHERE JOB = "CLERK" OR JOB = "ANALYST" AND SAL != 1000 AND SAL != 3000 AND SAL != 5000;
+
+-- 15. 사원번호, 이름, 급여 그리고 15% 인상된 급여를 정수로 표시하되
+-- 컬럼명을 New Salary로 지정하여 출력하여라.
+SELECT EMPNO, ENAME, SAL, FLOOR(SAL * 115 / 100) AS "NEW SALARY" FROM EMP;
+
+-- 16. 15번 문제와 동일한 데이터에서 급여 인상분(새 급여에서 이전 급여를 뺀 값)을
+-- 추가해서 출력하라. 컬럼명은 Increase로 하라.
+SELECT EMPNO, ENAME, SAL, (FLOOR(SAL * 115 / 100) - SAL) AS "INCREASE" FROM EMP;
+
+-- 17. 모든 사원의 이름 길이를 표시하는 쿼리를 작성하고
+-- 컬럼 별칭은 적당히 넣어서 출력하라.
+SELECT ENAME, CHAR_LENGTH(ENAME) AS "이름 길이" FROM EMP;
+
+-- 18. 사원 이름과 커미션을 출력하되, 커미션이 책정되지 않은 사원의 
+SELECT ENAME, COMM FROM EMP WHERE COMM IS NULL;
+
+
+
+
+
+< dbQuiz1 >
+
+
+use sqldb;
+SELECT * FROM usertbl;
+-- 1. usertbl에서 이름이 '김경호'인 행을 출력하라.
+SELECT * FROM USERTBL WHERE NAME = "김경호";
+
+-- 2. usertbl에서 출생년도가 1979이고 키가 182이상인 사람의 userid, name을 출력하라.
+SELECT USERID, NAME FROM USERTBL WHERE BIRTHYEAR = "1979" AND HEIGHT >= 182;
+
+-- 3. usertbl에서 출생년도가 1970년 이후이거나 키가 182이상인 사람의 userid, name을 출력한다.  
+SELECT USERID, NAME FROM USERTBL WHERE BIRTHYEAR >= 1970 OR HEIGHT >= 182;
+   
+-- 4. usertbl에서 키가 180이상, 183이하인 사람의 모든 정보를 출력하라
+SELECT * FROM USERTBL WHERE HEIGHT BETWEEN 180 AND 183;
+
+-- 5. usertbl에서 주소가 '경남','전남','경북','전북' 인 사람들의 모든 정보를 출력하라
+SELECT * FROM USERTBL WHERE ADDR IN ("경남", "전남", "경북", "전북");
+
+-- 6. usertbl에서 주소가 '경남'을 제외한 나머지 사람들의 모든 정보를 출력하라
+SELECT * FROM USERTBL WHERE ADDR != "경남";
+
+-- 7. usertbl에서 성이 "김"씨인 사람들의 모든 정보를 출력하라
+SELECT * FROM USERTBL WHERE NAME LIKE "김%";
+ 
+-- 8. usertbl에서 이름이 "종신"인 사람들의 모든 정보를 출력하라
+SELECT * FROM USERTBL WHERE NAME LIKE "%종신";
+
+-- 9. usertbl에서 사람들의 모든 정보를 name을 기준으로 오름차순 출력하라
+SELECT * FROM USERTBL ORDER BY NAME;
+
+-- 10. usertbl에서 사람들의 모든 정보를 name을 기준으로 내림차순 출력하라
+SELECT * FROM USERTBL ORDER BY NAME DESC;
+
+-- 12. usertbl에서 사람들의 모든 정보를 addr을 기준으로 오름차순 출력하라.
+-- 같은 주소가 있을 경우 name을 기준으로 오름차순 출력하라.
+SELECT * FROM USERTBL ORDER BY ADDR, NAME;
+
+-- 13. usertbl에서 모든 주소를 출력하되 중복을 제거하고 출력하라
+SELECT DISTINCT ADDR FROM USERTBL;
+
+
+
+
+< dbQuiz2 >
+
+-- 'Welcome to MySQL'을 대문자, 소문자로 각각 변경하시오
+SELECT UPPER('Welcome to MySQL') AS 대문자, LOWER('Welcome to MySQL') AS 소문자;
+
+-- 문제53
+-- 문자 C를 아스키코드값으로 출력하시오.
+SELECT ASCII('C');
+
+-- 문제54
+-- 문자열 '안녕하세요'의 바이트수를 출력하시오.
+SELECT LENGTH("안녕하세요");
+
+-- 문제55
+-- 문자열 '안녕하세요'의 문자의 수를 출력하시오.
+SELECT CHAR_LENGTH("안녕하세요");
+
+-- 문제56
+-- 문자열 '안녕하세요', 공백 2개, '반갑습니다'의 문자열을 연결하여 출력하시오.
+SELECT CONCAT("안녕하세요", "  ", "반갑습니다");
+
+-- 문제57
+-- 문자열 '안녕하세요'의 문자열에서 '하'의 위치를 출력하시오.
+SELECT LOCATE('하', '안녕하세요');
+
+-- 문제58
+-- 숫자 121245.78945를 소숫점 3자리로 출력하시오.
+SELECT TRUNCATE('121245.78945', 3);
+
+-- 문제59
+-- 숫자 100을 8진수, 16진수, 2진수로 출력하시오.
+SELECT CONV(100, 10, 8) AS 8진수, CONV(100, 10, 16) AS 16진수, CONV(100, 10, 2) AS 2진수;
+
+-- 문제60
+-- 문자열 'MySQL programming'을 대문자로 출력하시오.
+SELECT UPPER('MySQL programming') AS "대문자 출력";
+
+-- 문제61
+-- 문자열 'MySQL programming'을 역순으로 출력하시오.
+SELECT REVERSE('MySQL programming') AS "역순 출력";
+
+-- 문제62 
+-- 문자열 'MySQL programming'을 programming만 출력하시오.
+SELECT SUBSTRING_INDEX('MySQL programming', " ", -1);
+
+
+
+
+< dbQuiz3 >
+
+-- 문제63
+-- -44, -77, -100 에 대한 절대값을 출력하시오
+SELECT ABS(-44), ABS(-77), ABS(-100);
+
+-- 문제64
+-- cast()를 이용하여 2015-09-01 11:22:44:777을 날짜만 출력하세요
+SELECT CAST("2015-09-01 11:22:44:777" AS DATE) AS "날짜 출력";
+
+-- 문제65
+-- 문제64에서 준 데이터를 시간만 따로 출력하시오
+SELECT CAST("2015-09-01 11:22:44:777" AS TIME) AS "날짜 출력";
+
+-- 문제66
+-- 34.5678을 소수점 아래를 버리시오
+SELECT TRUNCATE(34.5678, 0);
+
+-- 문제67
+-- 27.8987을 반올림하여 소수점을 없애시오
+SELECT ROUND(27.8987);
+
+-- 문제68
+-- 19.6678을 소수점 1째자리까지 반올림하시오
+SELECT ROUND(19.6678, 1);
+
+-- 문제69
+-- 24.4535를 20이 나오도록 하세요.
+SELECT ROUND(24.4535, -1);
+
+-- 문제70
+-- 78을 3으로 나누었을때 나머지를 구하시오
+SELECT 78 % 3;
+
+-- 문제71
+-- 15의 4승을 출력하고, 81의 제곱근을 구하시오
+SELECT POW(15, 4), SQRT(81);
+
+-- 문제72
+-- rand()룰 이용하여 로또 번호를 출력하세요
+SELECT FLOOR(1+RAND()*45) AS "1", FLOOR(1+RAND()*45) AS "2", FLOOR(1+RAND()*45) AS "3"
+, FLOOR(1+RAND()*45) AS "4", FLOOR(1+RAND()*45) AS "5", FLOOR(1+RAND()*45) AS "6";
+
+-- 문제73
+-- 34.667788을 소수점 2째자리에서 버림하세요
+SELECT TRUNCATE(34.667788, 2);
+
+-- 문제74
+
+-- 문제75
+-- 문제74의 데이터에서 각각 30일 이전 날짜와 한달전 날짜를 출력하시오.
+SELECT CAST(DATE_SUB(NOW(), INTERVAL 30 DAY) AS DATE) AS "30일 전 날짜",
+CAST(DATE_SUB(NOW(), INTERVAL 1 MONTH) AS DATE) AS "한달 전 날짜";
+
+
+-- 문제76
+
+-- 문제77
+-- 오늘 날짜를 출력하고 1년 중에 몇일 째인지를 출력하시오
+SELECT CAST(NOW() AS DATE) AS "오늘 날짜", DAYOFYEAR(NOW()) AS "1년 중 몇일 째";
+
+-- 문제78
+-- 2021년 2월의 마지막날을 출력하시오
+SELECT LAST_DAY("2021-02-01");
+
+-- 문제79
+-- 9시 45분을 몇 초인지 출력하시오.
+SELECT TIME_TO_SEC('09:45:00');
+
+-- 문제80
+-- 5초 후 다음 문구를 출력하시오. 문구 : 열심히 하자
+SELECT SLEEP(5), "열심히 하자";
+
+-- 문제81
+-- 오늘 날짜를 출력하고 몇 사분기인지를 출력하시오.
+SELECT CAST(NOW() AS DATE) AS "오늘 날짜", QUARTER(NOW());
+
+
+
+< dbQuiz4 >
+
+use sqldb;
+SELECT * FROM BUYTBL;
+SELECT * FROM USERTBL;
+-- 1. 이름이 '김경호'인 사람보다 키가 큰 사람들의 이름과 키를 출력하라
+SELECT NAME, HEIGHT FROM USERTBL
+WHERE HEIGHT > (SELECT HEIGHT FROM USERTBL WHERE NAME = "김경호");
+
+-- 2. 주소가 "경남" 인 사람들의 최소 키보다 큰 사람들에 대한 이름과 키를 출력하라
+SELECT NAME, HEIGHT FROM USERTBL
+WHERE HEIGHT > (SELECT MIN(HEIGHT) FROM USERTBL WHERE ADDR = "경남");
+
+-- 3. 주소가 "경남" 인 모든 사람들의 키보다 큰 사람들에 대한 이름과 키를 출력하라
+SELECT NAME, HEIGHT FROM USERTBL
+WHERE HEIGHT > (SELECT MAX(HEIGHT) FROM USERTBL WHERE ADDR = "경남");
+
+-- 4. userid를 기준으로 해당 회원의 id, name, prodname, addr, 연락처를 출력하라
+SELECT B.USERID AS "ID", U.NAME, B.PRODNAME, U.ADDR,
+CONCAT(U.MOBILE1, U.MOBILE2) AS "연락처"
+FROM BUYTBL B INNER JOIN USERTBL U
+ON B.USERID = U.USERID;
